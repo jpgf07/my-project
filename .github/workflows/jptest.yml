@@ -27,14 +27,7 @@ jobs:
       - uses: actions/setup-node@v1
         with: 
          node-version: ${{ matrix.node-version }}
-        
-      - name: Install npm dependencies
-        run: npm install
-        working-directory: . 
-      - name: Build npm dependencies
-        run: npm run build
-        working-directory: .
-      
+             
       - uses: burnett01/rsync-deployments@4.0
         name: next sync
         with:
@@ -48,21 +41,3 @@ jobs:
            script: |
               cd /root/home/nextjs-jpsblog
               yarn dev
-              
-        
-           
-       
-       
-
-
-
-
-      # Runs a single command using the runners shell
-      - name: Run a one-line script
-        run: echo Hello, world!
-
-      # Runs a set of commands using the runners shell
-      - name: Run a multi-line script
-        run: |
-          echo Add other actions to build,
-          echo test, and deploy your project.
