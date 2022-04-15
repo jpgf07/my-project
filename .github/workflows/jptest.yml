@@ -1,6 +1,6 @@
 # This is a basic workflow to help you get started with Actions
 
-name: test jp app
+name: test-jp-app
 
 # Controls when the workflow will run
 on:
@@ -27,17 +27,5 @@ jobs:
       - uses: actions/setup-node@v1
         with: 
          node-version: ${{ matrix.node-version }}
-             
-      - uses: burnett01/rsync-deployments@4.0
-        name: next sync
-        with:
-           switches: -avzr --exclude=".git" --include=".next/*" --include="./node_nodules/*" --include="./public/*" --include="*.json" --filter=""
-           path: /
-           remote_path: /root/home/nextjs-jpsblog
-           remote_host: 164.92.97.17
-           remote_port: 22
-           remote_user: ${{ secrets.USERNAME }}
-           remote_key: ${{ secrets.PASSWORD }}
-           script: |
-              cd /root/home/nextjs-jpsblog
-              yarn dev
+      - run: npm ci
+      - run: npm test
