@@ -35,6 +35,7 @@ jobs:
         name: next sync
         with:
           switches: -avzr --exclude=".git" --include="./node_nodules/" --include="./public/" --include="*.json"=""
+
           path: /
           remote_path: /root/home/DEV/nextjs-jpsblog
           remote_host: 137.184.182.231
