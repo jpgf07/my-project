@@ -29,3 +29,23 @@ jobs:
          node-version: ${{ matrix.node-version }}
       - run: yarn install
       - run: yarn build
+      
+      - uses: burnett01/rsync-deployments@4.0
+        name: next sync
+        with:
+          switches: -avzr --exclude=".git" --include="./node_nodules/" --include="./public/" --include="*.json"=""
+          path: /
+          remote_path: /root/home/nextjs-jpsblog
+          remote_host: 164.92.97.17
+          remote_port: 22
+          remote_user: ${{ secrets.USERNAME }}
+          remote_key: ${{ secrets.PRIVATEKEY }}
+      
+      
+      
+      
+      
+      
+      
+      
+      
