@@ -50,8 +50,8 @@ jobs:
           username: ${{secrets.MAIL_USERNAME}}
           password: ${{secrets.MAIL_PASSWORD}}
           subject: Maniak Devops Challenge job result (DEV)
-          to: juliaadrianavargas@gmail.com,jp.gomezfranco@gmail.com
-          from: Juan Pablo Gomez
+          to: angel@butchershop.co,jp.gomezfranco@gmail.com
+          from: JP Gomez
       
       
       
