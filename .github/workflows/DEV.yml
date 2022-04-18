@@ -42,8 +42,8 @@ jobs:
           remote_user: ${{ secrets.USERNAME }}
           remote_key: ${{ secrets.PRIVATEKEY }}
       
-      - name: Send mail
-        uses: dawidd6/action-send-mail@v3
+      - uses: dawidd6/action-send-mail@v3
+        name: Send mail
         with:
           server_address: smtp.gmail.com
           server_port: 465
