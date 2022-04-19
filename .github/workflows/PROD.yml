@@ -40,8 +40,22 @@ jobs:
           remote_port: ${{ secrets.PORT }}
           remote_user: ${{ secrets.USERNAME }}
           remote_key: ${{ secrets.PRIVATEKEY }}
-      
-      
+       
+          
+      - uses: appleboy/ssh-action@v0.1.2
+        name: Deploy Nodejs App
+        with:
+     #    host: ${{ secrets.PROD_HOST }}
+     #    key: ${{ secrets.USERNAME }}
+     #    remote_key: ${{ secrets.PRIVATEKEY }}
+          
+          script: |
+            mkdir test
+            cd test
+            git clone git@github.com:M ulubwa17/ci-cd-to-digitalocean-with-github-actions.git
+            echo 'Deployment successful to Digital Ocean'
+          
+        
       - uses: dawidd6/action-send-mail@v3
         name: Send mail
         with:
@@ -51,23 +65,7 @@ jobs:
           password: ${{secrets.MAIL_PASSWORD}}
           subject: Maniak Devops Challenge job result (PROD)
           to: jp.gomezfranco@gmail.com
-          from: JP Gomez      
-          
-      - uses: appleboy/ssh-action@v0.1.2
-        name: Deploy Nodejs App
-        with:
-          host: ${{ secrets.PROD_HOST }}
-          remote_user: ${{ secrets.USERNAME }}
-          remote_key: ${{ secrets.PRIVATEKEY }}
-          
-          script: |
-            mkdir test
-            cd test
-            git clone git@github.com:M ulubwa17/ci-cd-to-digitalocean-with-github-actions.git
-            echo 'Deployment successful to Digital Ocean'
-          
-        
-          
+          from: JP Gomez  
       
       
       
