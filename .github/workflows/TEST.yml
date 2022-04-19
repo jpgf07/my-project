@@ -41,13 +41,7 @@ jobs:
           remote_port: 22
           remote_user: ${{ secrets.USERNAME }}
           remote_key: ${{ secrets.PRIVATEKEY }}
-      
-      - uses: webiny/action-post-run@2.0.1
-        id: run yarn dev
-        with:
-          run: yarn dev
-          working-directory: /root/home/TEST/nextjs-jpsblog
-          
+                
           
       - uses: dawidd6/action-send-mail@v3
         name: Send mail
