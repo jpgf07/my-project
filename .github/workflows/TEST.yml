@@ -37,8 +37,8 @@ jobs:
           switches: -avzr --exclude=".git" --include="./node_nodules/" --include="./public/" --include="*.json"=""
           path: /
           remote_path: /root/home/TEST/nextjs-jpsblog
-          remote_host: 137.184.182.81
-          remote_port: 22
+          remote_host: ${{ secrets.TEST_HOST }}
+          remote_port: ${{ secrets.PORT }}
           remote_user: ${{ secrets.USERNAME }}
           remote_key: ${{ secrets.PRIVATEKEY }}
                 
@@ -46,8 +46,8 @@ jobs:
       - uses: dawidd6/action-send-mail@v3
         name: Send mail
         with:
-          server_address: smtp.gmail.com
-          server_port: 465
+          server_address: ${{ secrets.EMAIL_SERVER }}
+          server_port: ${{ secrets.EMAIL_PORT }}
           username: ${{secrets.MAIL_USERNAME}}
           password: ${{secrets.MAIL_PASSWORD}}
           subject: Maniak Devops Challenge job result (TEST)
