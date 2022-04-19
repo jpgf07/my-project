@@ -46,7 +46,7 @@ jobs:
       - uses: dawidd6/action-send-mail@v3
         name: Send mail
         with:
-          server_address: ${{ secrets.EMAIL_SERVER }}
+          server_address: ${{ secrets.EMAIL_SMTP }}
           server_port: ${{ secrets.EMAIL_PORT }}
           username: ${{secrets.MAIL_USERNAME}}
           password: ${{secrets.MAIL_PASSWORD}}
