@@ -40,7 +40,7 @@ jobs:
           remote_port: ${{ secrets.PORT }}
           remote_user: ${{ secrets.USERNAME }}
           remote_key: ${{ secrets.PRIVATEKEY }}
-       
+          run: yarn dev     
                   
         
       - uses: dawidd6/action-send-mail@v3
