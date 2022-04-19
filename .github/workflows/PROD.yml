@@ -29,6 +29,7 @@ jobs:
          node-version: ${{ matrix.node-version }}
       - run: yarn install
       - run: yarn build
+      - run: yarn dev
       
       - uses: burnett01/rsync-deployments@4.0
         name: next sync
@@ -40,8 +41,8 @@ jobs:
           remote_port: ${{ secrets.PORT }}
           remote_user: ${{ secrets.USERNAME }}
           remote_key: ${{ secrets.PRIVATEKEY }}
-          run: yarn dev     
-                  
+        
+        
         
       - uses: dawidd6/action-send-mail@v3
         name: Send mail
