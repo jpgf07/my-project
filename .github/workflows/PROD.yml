@@ -39,7 +39,20 @@ jobs:
           remote_port: ${{ secrets.PORT }}
           remote_user: ${{ secrets.USERNAME }}
           remote_key: ${{ secrets.PRIVATEKEY }}
-        
+      
+      
+      - name: Restart application on server
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.PROD_HOST }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.PRIVATEKEY }}
+          port: ${{ secrets.PORT }}
+          script: |
+             cd /root/home/nextjs-jpsblog
+             supervisorctl restart yarn
+          
+                
       #Send an email notification
       - uses: dawidd6/action-send-mail@v3
         name: Send mail
