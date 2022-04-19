@@ -41,20 +41,7 @@ jobs:
           remote_user: ${{ secrets.USERNAME }}
           remote_key: ${{ secrets.PRIVATEKEY }}
        
-          
-      - uses: appleboy/ssh-action@v0.1.2
-        name: Deploy Nodejs App
-        with:
-          host: ${{ secrets.PROD_HOST }}
-          username: ${{ secrets.USER2 }}
-          password: ${{ secrets.PASS2 }}
-          
-          script: |
-            mkdir test
-            cd test
-            git clone git@github.com:M ulubwa17/ci-cd-to-digitalocean-with-github-actions.git
-            echo 'Deployment successful to Digital Ocean'
-          
+                  
         
       - uses: dawidd6/action-send-mail@v3
         name: Send mail
