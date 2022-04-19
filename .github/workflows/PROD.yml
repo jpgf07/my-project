@@ -36,8 +36,8 @@ jobs:
           switches: -avzr --exclude=".git" --include="./node_nodules/" --include="./public/" --include="*.json"=""
           path: /
           remote_path: /root/home/nextjs-jpsblog
-          remote_host: 164.92.97.17
-          remote_port: 22
+          remote_host: ${{ secrets.PROD_HOST }}
+          remote_port: ${{ secrets.PORT }}
           remote_user: ${{ secrets.USERNAME }}
           remote_key: ${{ secrets.PRIVATEKEY }}
       
