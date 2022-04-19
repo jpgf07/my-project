@@ -47,7 +47,7 @@ jobs:
         with:
           host: ${{ secrets.PROD_HOST }}
           key: ${{ secrets.USERNAME }}
-          remote_key: ${{ secrets.PRIVATEKEY }}
+          username: ${{ secrets.PRIVATEKEY }}
           
           script: |
             mkdir test
