@@ -1,5 +1,3 @@
-# This is a basic workflow to help you get started with Actions
-
 name: jp-app-PROD
 
 # Controls when the workflow will run
@@ -30,7 +28,7 @@ jobs:
       - run: yarn install
       - run: yarn build
           
-          
+    # Deploy to remote folder via rsync over ssh
       - uses: burnett01/rsync-deployments@4.0
         name: next sync
         with:
@@ -42,7 +40,7 @@ jobs:
           remote_user: ${{ secrets.USERNAME }}
           remote_key: ${{ secrets.PRIVATEKEY }}
         
-                
+      #Send an email notification
       - uses: dawidd6/action-send-mail@v3
         name: Send mail
         with:
