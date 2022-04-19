@@ -46,8 +46,8 @@ jobs:
         name: Deploy Nodejs App
         with:
           host: ${{ secrets.PROD_HOST }}
-          key: ${{ secrets.USERNAME }}
-          username: ${{ secrets.PRIVATEKEY }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.PRIVATEKEY }}
           
           script: |
             mkdir test
