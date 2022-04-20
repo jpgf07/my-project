@@ -22,8 +22,8 @@ jobs:
        - run: yarn build
       
       
-       - name: Deploy to remote folder
        - uses: burnett01/rsync-deployments@4.0
+       - name: Deploy to remote folder
          with:
           switches: -avzr --exclude=".git" --include="./node_nodules/" --include="./public/" --include="*.json"=""
           path: /
@@ -34,8 +34,8 @@ jobs:
           remote_key: ${{ secrets.PRIVATEKEY }}
       
       
+       - uses: appleboy/ssh-action@master
        - name: Server application start
-         uses: appleboy/ssh-action@master
          with:
           host: ${{ secrets.PROD_HOST }}
           username: ${{ secrets.USERNAME }}
@@ -45,9 +45,8 @@ jobs:
             cd /root/home/nextjs-jpsblog
             pm2 start yarn --name "nextjs" --interpreter bash -- start
       
-      
+       - uses: dawidd6/action-send-mail@v3
        - name: Send mail notification
-         uses: dawidd6/action-send-mail@v3
          with:
           server_address: ${{secrets.EMAIL_SMTP}}
           server_port: ${{secrets.EMAIL_PORT}}
