@@ -9,7 +9,7 @@ on:
   push:
     branches: [ DEV ]
   pull_request:
-    branches: [ MAIN ]
+    branches: [ DEV ]
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -32,7 +32,7 @@ jobs:
       - run: yarn build
       
       - uses: burnett01/rsync-deployments@4.0
-        name: next sync
+        name: Server sync
         with:
           switches: -avzr --exclude=".git" --include="./node_nodules/" --include="./public/" --include="*.json"=""
           path: /
@@ -42,8 +42,21 @@ jobs:
           remote_user: ${{ secrets.USERNAME }}
           remote_key: ${{ secrets.PRIVATEKEY }}
       
+      
+      - name: Server application start
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.PROD_HOST }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.PRIVATEKEY }}
+          port: ${{ secrets.PORT }}
+          script: |
+            cd /root/home/nextjs-jpsblog
+            pm2 start yarn --name "nextjs" --interpreter bash -- star
+      
+      
       - uses: dawidd6/action-send-mail@v3
-        name: Send mail
+        name: Send mail notification
         with:
           server_address: ${{ secrets.EMAIL_SMTP }}
           server_port: ${{ secrets.EMAIL_PORT }}
@@ -56,4 +69,4 @@ jobs:
       
       
       
-      
+    
