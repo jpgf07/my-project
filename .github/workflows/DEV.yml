@@ -46,7 +46,7 @@ jobs:
       - name: Server application start
         uses: appleboy/ssh-action@master
         with:
-          host: ${{ secrets.PROD_HOST }}
+          host: ${{ secrets.DEV_HOST }}
           username: ${{ secrets.USERNAME }}
           key: ${{ secrets.PRIVATEKEY }}
           port: ${{ secrets.PORT }}
@@ -63,7 +63,7 @@ jobs:
           username: ${{secrets.MAIL_USERNAME}}
           password: ${{secrets.MAIL_PASSWORD}}
           subject: Maniak Devops Challenge job result (DEV)
-          to: angel@butchershop.co,jp.gomezfranco@gmail.com
+          to: angel@butchershop.co
           from: JP Gomez
       
       
