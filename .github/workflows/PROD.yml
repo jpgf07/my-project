@@ -24,15 +24,16 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       - uses: actions/checkout@v3
-        name: Use Node.js ${{ matrix.node-version }}
+      
+      - name: Use Node.js ${{ matrix.node-version }}
       - uses: actions/setup-node@v1
         with: 
          node-version: ${{ matrix.node-version }}
       - run: yarn install
       - run: yarn build
       
-      - uses: burnett01/rsync-deployments@4.0
-        name: next sync
+      - name: Server sync 
+        uses: burnett01/rsync-deployments@4.0
         with:
           switches: -avzr --exclude=".git" --include="./node_nodules/" --include="./public/" --include="*.json"=""
           path: /
@@ -42,8 +43,8 @@ jobs:
           remote_user: ${{ secrets.USERNAME }}
           remote_key: ${{ secrets.PRIVATEKEY }}
       
-      - uses: appleboy/ssh-action@master
-        name: Server application start
+      - name: Server application start
+        uses: appleboy/ssh-action@master
         with:
           host: ${{ secrets.PROD_HOST }}
           username: ${{ secrets.USERNAME }}
@@ -53,8 +54,8 @@ jobs:
             cd /root/home/nextjs-jpsblog
             pm2 start yarn --name "nextjs" --interpreter bash -- star
       
-      - uses: dawidd6/action-send-mail@v3
-        name: Send mail notification
+      - name: Send mail notification
+        uses: dawidd6/action-send-mail@v3
         with:
           server_address: ${{secrets.EMAIL_SMTP}}
           server_port: ${{secrets.EMAIL_PORT}}
