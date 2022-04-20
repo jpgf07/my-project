@@ -41,16 +41,16 @@ jobs:
           remote_key: ${{ secrets.PRIVATEKEY }}
       
       
-    #  - name: Restart application on server
-    #    uses: appleboy/ssh-action@master
-    #    with:
-    #      host: ${{ secrets.PROD_HOST }}
-    #      username: ${{ secrets.USERNAME }}
-    #      key: ${{ secrets.PRIVATEKEY }}
-    #      port: ${{ secrets.PORT }}
-    #      script: |
-    #         cd /root/home/nextjs-jpsblog
-    #         supervisorctl restart yarn
+      - name: Restart application on server
+        uses: appleboy/ssh-action@master
+        with:
+         host: 147.182.226.193
+         username: ${{ secrets.USERNAME }}
+         key: ${{ secrets.PRIVATEKEY }}
+         port: ${{ secrets.PORT }}
+         script: |
+           cd /root/home/nextjs-jpsblog
+           pm2 start yarn --name "nextjs" --interpreter bash -- start
           
                 
       #Send an email notification
