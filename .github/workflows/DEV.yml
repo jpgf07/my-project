@@ -51,8 +51,8 @@ jobs:
           key: ${{ secrets.PRIVATEKEY }}
           port: ${{ secrets.PORT }}
           script: |
-            cd /root/home/nextjs-jpsblog
-            pm2 start yarn --name "nextjs" --interpreter bash -- star
+            cd /root/home/DEV/nextjs-jpsblog
+            pm2 start yarn --name "DEV-nextjs" --interpreter bash -- star
       
       
       - uses: dawidd6/action-send-mail@v3
