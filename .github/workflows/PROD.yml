@@ -1,58 +1,67 @@
-name: jp-app-PROD
 
+# This is a basic workflow to help you get started with Actions
+
+name: test-jp-app
+
+# Controls when the workflow will run
 on:
+  # Triggers the workflow on push or pull request events but only for the main branch
   push:
-    branches: [ main ]
+    branches: [ DEV ]
   pull_request:
     branches: [ main ]
 
+  # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-
+  
   build:
-     runs-on: ubuntu-latest
-     steps:
-       - uses: actions/checkout@v3
-         name: Use Node.js ${{ matrix.node-version }}
-       - uses: actions/setup-node@v1
-         with: 
-          node-version: ${{ matrix.node-version }}
-       - run: yarn install
-       - run: yarn build
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      - uses: actions/checkout@v3
+        name: Use Node.js ${{ matrix.node-version }}
+      - uses: actions/setup-node@v1
+        with: 
+         node-version: ${{ matrix.node-version }}
+      - run: yarn install
+      - run: yarn build
       
-      
-       - uses: burnett01/rsync-deployments@4.0
-       - name: Deploy to remote folder
-         with:
+      - uses: burnett01/rsync-deployments@4.0
+        name: next sync
+        with:
           switches: -avzr --exclude=".git" --include="./node_nodules/" --include="./public/" --include="*.json"=""
           path: /
           remote_path: /root/home/nextjs-jpsblog
-          remote_host: ${{ secrets.PROD_HOST }}
-          remote_port: ${{ secrets.PORT }}
+          remote_host: 164.92.97.17
+          remote_port: 22
           remote_user: ${{ secrets.USERNAME }}
           remote_key: ${{ secrets.PRIVATEKEY }}
       
-      
-       - uses: appleboy/ssh-action@master
-       - name: Server application start
-         with:
+      - uses: appleboy/ssh-action@master
+        name: Server application start
+        with:
           host: ${{ secrets.PROD_HOST }}
           username: ${{ secrets.USERNAME }}
           key: ${{ secrets.PRIVATEKEY }}
           port: ${{ secrets.PORT }}
           script: |
             cd /root/home/nextjs-jpsblog
-            pm2 start yarn --name "nextjs" --interpreter bash -- start
+            pm2 start yarn --name "nextjs" --interpreter bash -- star
       
-       - uses: dawidd6/action-send-mail@v3
-       - name: Send mail notification
-         with:
+      - uses: dawidd6/action-send-mail@v3
+        name: Send mail notification
+        with:
           server_address: ${{secrets.EMAIL_SMTP}}
           server_port: ${{secrets.EMAIL_PORT}}
           username: ${{secrets.MAIL_USERNAME}}
           password: ${{secrets.MAIL_PASSWORD}}
           subject: Maniak Devops Challenge job result (PROD)
           to: jp.gomezfranco@gmail.com
-          from: JP Gomez  
+          from: JP Gomez 
+      
       
