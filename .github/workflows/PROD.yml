@@ -15,7 +15,6 @@ jobs:
      steps:
        - uses: actions/checkout@v3
          name: Use Node.js ${{ matrix.node-version }}
-
        - uses: actions/setup-node@v1
          with: 
           node-version: ${{ matrix.node-version }}
@@ -38,23 +37,23 @@ jobs:
        - name: Server application start
          uses: appleboy/ssh-action@master
          with:
-           host: ${{ secrets.PROD_HOST }}
-           username: ${{ secrets.USERNAME }}
-           key: ${{ secrets.PRIVATEKEY }}
-           port: ${{ secrets.PORT }}
-           script: |
-             cd /root/home/nextjs-jpsblog
-             pm2 start yarn --name "nextjs" --interpreter bash -- start
+          host: ${{ secrets.PROD_HOST }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.PRIVATEKEY }}
+          port: ${{ secrets.PORT }}
+          script: |
+            cd /root/home/nextjs-jpsblog
+            pm2 start yarn --name "nextjs" --interpreter bash -- start
       
       
        - name: Send mail notification
          uses: dawidd6/action-send-mail@v3
          with:
-           server_address: ${{secrets.EMAIL_SMTP}}
-           server_port: ${{secrets.EMAIL_PORT}}
-           username: ${{secrets.MAIL_USERNAME}}
-           password: ${{secrets.MAIL_PASSWORD}}
-           subject: Maniak Devops Challenge job result (PROD)
-           to: jp.gomezfranco@gmail.com
-           from: JP Gomez  
+          server_address: ${{secrets.EMAIL_SMTP}}
+          server_port: ${{secrets.EMAIL_PORT}}
+          username: ${{secrets.MAIL_USERNAME}}
+          password: ${{secrets.MAIL_PASSWORD}}
+          subject: Maniak Devops Challenge job result (PROD)
+          to: jp.gomezfranco@gmail.com
+          from: JP Gomez  
       
