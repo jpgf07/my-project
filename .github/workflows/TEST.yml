@@ -9,7 +9,7 @@ on:
   push:
     branches: [ TEST ]
   pull_request:
-    branches: [ MAIN ]
+    branches: [ TEST ]
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -41,7 +41,17 @@ jobs:
           remote_port: ${{ secrets.PORT }}
           remote_user: ${{ secrets.USERNAME }}
           remote_key: ${{ secrets.PRIVATEKEY }}
-                
+          
+      - name: Server application start
+        uses: appleboy/ssh-action@master
+        with:
+         host: ${{ secrets.TEST_HOST }}
+         username: ${{ secrets.USERNAME }}
+         key: ${{ secrets.PRIVATEKEY }}
+         port: ${{ secrets.PORT }}
+         script: |
+           cd /root/home/TEST/nextjs-jpsblog
+           pm2 start yarn --name "nextjs" --interpreter bash -- star
           
       - uses: dawidd6/action-send-mail@v3
         name: Send mail
@@ -51,7 +61,7 @@ jobs:
           username: ${{secrets.MAIL_USERNAME}}
           password: ${{secrets.MAIL_PASSWORD}}
           subject: Maniak Devops Challenge job result (TEST)
-          to: jp.gomezfranco@gmail.com
+          to: angel@butchershop.co
           from: JP Gomez
       
       
