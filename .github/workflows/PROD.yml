@@ -52,33 +52,19 @@ jobs:
         
 
 
-## ======= BAD
-#
-#    - name: Set up S3cmd cli tool
-#      uses: s3-actions/s3cmd@v1.2.0
-#      with:
-#       #provider: DigitalOcean # default is linode
-#        region: ${{ secrets.DO_REGION}}
-#        access_key: ${{ secrets.DO_ACCESS }}
-#        secret_key: ${{ secrets.DO_SECRET }}
-#
-#    - name: Interact with object storage
-#      run: |
-#        s3cmd sync s3://github-test1.sfo3.digitaloceanspaces.com/folder ./
-#     #s3cmd get Testing-Folder/api/hello.js hello.js
-#     #s3cmd info s3://github-test1.sfo3.digitaloceanspaces.com
+    - name: Set up S3cmd cli tool
+      uses: s3-actions/s3cmd@v1.2.0
+      with:
+       #provider: DigitalOcean # default is linode
+        region: ${{ secrets.DO_REGION}}
+        access_key: ${{ secrets.DO_ACCESS }}
+        secret_key: ${{ secrets.DO_SECRET }}
 
-
-
-
-    - uses: actions/checkout@v3
-      name: Use Node.js ${{ matrix.node-version }
-    - uses: actions/setup-node@v1
-      with: 
-       node-version: ${{ matrix.node-version }}
-    - run: npm install
-    - run: npm install -g spaces-cli
-    - run: spaces-cli down Testing-Folder -s https://github-test1.sfo3.digitaloceanspaces.com -r sfo3 --access-key-id ${{ secrets.DO_ACCESS }} --secret-key-id ${{ secrets.DO_SECRET }}
+    - name: Interact with object storage
+      run: |
+        s3cmd get s3://github-test1.sfo3.digitaloceanspaces.com/folder ./
+     #s3cmd get Testing-Folder/api/hello.js hello.js
+     #s3cmd info s3://github-test1.sfo3.digitaloceanspaces.com
 
 
 
