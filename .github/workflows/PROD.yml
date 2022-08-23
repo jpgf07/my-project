@@ -51,23 +51,34 @@ jobs:
 #        SPACE_SECRET_ACCESS_KEY: ${{ secrets.DO_SECRET }}
         
 
+# =========== BAD 
+#    - name: Set up S3cmd cli tool
+#      uses: s3-actions/s3cmd@v1.2.0
+#      with:
+#       #provider: DigitalOcean # default is linode
+#        region: ${{ secrets.DO_REGION}}
+#        access_key: ${{ secrets.DO_ACCESS }}
+#        secret_key: ${{ secrets.DO_SECRET }}#
+#
+#
+#    - name: Interact with object storage
+#      run: |
+#        s3cmd get s3://sfo3.digitaloceanspaces.com/github-test1/Testing-Folder ./
+#     #s3cmd get Testing-Folder/api/hello.js hello.js
+#     #s3cmd info s3://github-test1.sfo3.digitaloceanspaces.com
 
-    - name: Set up S3cmd cli tool
-      uses: s3-actions/s3cmd@v1.2.0
+
+    - uses: actions/checkout@master
+    - uses: LibreTexts/do-space-sync-action@master
       with:
-       #provider: DigitalOcean # default is linode
-        region: ${{ secrets.DO_REGION}}
-        access_key: ${{ secrets.DO_ACCESS }}
-        secret_key: ${{ secrets.DO_SECRET }}
-
-    - name: Interact with object storage
-      run: |
-        s3cmd get s3://sfo3.digitaloceanspaces.com/github-test1/Testing-Folder ./
-     #s3cmd get Testing-Folder/api/hello.js hello.js
-     #s3cmd info s3://github-test1.sfo3.digitaloceanspaces.com
-
-
-
+        args: --acl public-read
+      env:
+        SOURCE_DIR: 'Testing-Folder'
+        DEST_DIR: './public'
+        SPACE_NAME: ${{ secrets.DO_NAME }}
+        SPACE_REGION: ${{ secrets.DO_REGION}}
+        SPACE_ACCESS_KEY_ID: ${{ secrets.DO_ACCESS }}
+        SPACE_SECRET_ACCESS_KEY: ${{ secrets.DO_SECRET }}
 
 
 
