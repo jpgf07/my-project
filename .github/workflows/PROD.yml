@@ -42,8 +42,7 @@ jobs:
       with:
         args: --acl public-read
       env:
-     #  SOURCE_DIR: './pages'
-        SOURCE_DIR: '/jpgf07/github01'
+        SOURCE_DIR: './pages'
         DEST_DIR: 'Testing-Folder'
         SPACE_NAME: ${{ secrets.DO_NAME }}
         SPACE_REGION: ${{ secrets.DO_REGION}}
