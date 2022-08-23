@@ -63,7 +63,7 @@ jobs:
 
     - name: Interact with object storage
       run: |
-        s3cmd sync --recursive --acl-public default s3://sfo3.digitaloceanspaces.com/github-test1/
+        s3cmd sync s3://sfo3.digitaloceanspaces.com/github-test1/ ./
 #     #s3cmd get Testing-Folder/api/hello.js hello.js
 #     #s3cmd info s3://github-test1.sfo3.digitaloceanspaces.com
 
