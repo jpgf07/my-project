@@ -56,14 +56,14 @@ jobs:
       uses: s3-actions/s3cmd@v1.2.0
       with:
        #provider: DigitalOcean # default is linode
-        region: sfo3.digitaloceanspaces.com
+        region: ${{ secrets.DO_REGION}}
         access_key: ${{ secrets.DO_ACCESS }}
         secret_key: ${{ secrets.DO_SECRET }}#
 
 
     - name: Interact with object storage
       run: |
-        s3cmd get --recursive s3://github-test1/Testing-Folder ./
+        s3cmd get --recursive s3://github-test1.sfo3.digitaloceanspaces.com/ ./
 #     #s3cmd get Testing-Folder/api/hello.js hello.js
 #     #s3cmd info s3://github-test1.sfo3.digitaloceanspaces.com
 
