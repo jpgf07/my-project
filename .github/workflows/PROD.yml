@@ -35,19 +35,18 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@main
-        with:
-          fetch-depth: 0
-      - name: Sync DigitalOcean Spac, purge changes from the CDN
-        uses: laukstein/do-spaces@main
-        env:
-          DO_TOKEN: ${{ secrets.DO_TOKEN }}
-          DO_ACCESS: ${{ secrets.DO_ACCESS }}
-          DO_SECRET: ${{ secrets.DO_SECRET }}
-          DO_NAME: ${{ secrets.DO_NAME }}
-          DO_REGION: ams3
-          LOCAL_DIR: public
+    - uses: actions/checkout@master
+    - uses: LibreTexts/do-space-sync-action@master
+      with:
+        args: --acl public-read
+      env:
+        SOURCE_DIR: './pages'
+        DEST_DIR: 'Testing-Folder'
+        SPACE_NAME: ${{ secrets.DO_NAME }}
+        SPACE_REGION: ${{ secrets.DO_REGION}}
+        SPACE_ACCESS_KEY_ID: ${{ secrets.DO_ACCESS }}
+        SPACE_SECRET_ACCESS_KEY: ${{ secrets.DO_SECRET }}
+        
           
           
           
