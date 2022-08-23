@@ -53,7 +53,7 @@ jobs:
 
 # =========== BAD 
     - name: Set up S3cmd cli tool
-      uses: s3-actions/s3cmd@v1.1
+      uses: s3-actions/s3cmd@v1.2.0
       with:
        #provider: DigitalOcean # default is linode
         region: ${{ secrets.DO_REGION}}
@@ -63,7 +63,7 @@ jobs:
 
     - name: Interact with object storage
       run: |
-        s3cmd get --recursive s3://github-test1.sfo3.digitaloceanspaces.com ./
+        s3cmd get --recursive http://github-test1.sfo3.digitaloceanspaces.com ./
 #     #s3cmd get Testing-Folder/api/hello.js hello.js
 #     #s3cmd info s3://github-test1.sfo3.digitaloceanspaces.com
 
