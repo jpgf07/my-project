@@ -63,7 +63,7 @@ jobs:
 
     - name: Interact with object storage
       run: |
-        s3cmd get s3://${{ secrets.DO_NAME }}/Testing-Folder --recursive
+        s3cmd get https://github-test1.sfo3.digitaloceanspaces.com --recursive
         pwd
         ls
 
