@@ -62,7 +62,7 @@ jobs:
 
     - name: Interact with object storage
       run: |
-        s3cmd get https://github-test1.sfo3.digitaloceanspaces.com/Testing-Folder ./
+        s3cmd get s3://github-test1.sfo3.digitaloceanspaces.com/Testing-Folder ./
      #s3cmd get Testing-Folder/api/hello.js hello.js
      #s3cmd info s3://github-test1.sfo3.digitaloceanspaces.com
 
