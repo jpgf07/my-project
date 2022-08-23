@@ -56,7 +56,7 @@ jobs:
     - name: Set up S3cmd cli tool
       uses: s3-actions/s3cmd@v1.2.0
       with:
-        provider: DigitalOcean # default is linode
+        provider: DO # default is linode
         region: ${{ secrets.DO_REGION}}
         access_key: ${{ secrets.DO_ACCESS }}
         secret_key: ${{ secrets.DO_SECRET }}
