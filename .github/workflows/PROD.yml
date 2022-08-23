@@ -60,6 +60,7 @@ jobs:
         access_key: ${{ secrets.DO_ACCESS }}
         secret_key: ${{ secrets.DO_SECRET }}
         DO_S3_BUCKET: github-test1
+        host_bucket: DigitalOcean
 
     - name: Interact with object storage
       run: |
