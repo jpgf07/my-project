@@ -4,12 +4,12 @@
 name: test-jp-app
 
 # Controls when the workflow will run
-#on:
+on:
   # Triggers the workflow on push or pull request events but only for the main branch
-#  push:
-#    branches: [ PROD ]
-#  pull_request:
-#    branches: [ PROD ]
+  push:
+    branches: [ PROD ]
+  pull_request:
+    branches: [ PROD ]
 
   # Allows you to run this workflow manually from the Actions tab
 #  workflow_dispatch:
@@ -28,9 +28,9 @@ name: test-jp-app
 #       - run: yarn install
 #       - run: yarn build
 #      name: DigitalOcean Spaces Action
-on:
-  push:
-    paths: ./pages
+#on:
+#  push:
+#    paths: ./pages
 jobs:
   deploy:
     runs-on: ubuntu-latest
