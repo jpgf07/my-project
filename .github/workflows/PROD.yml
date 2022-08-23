@@ -59,12 +59,10 @@ jobs:
         region: ${{ secrets.DO_REGION}}
         access_key: ${{ secrets.DO_ACCESS }}
         secret_key: ${{ secrets.DO_SECRET }}
-        DO_S3_BUCKET: github-test1
-        host_bucket: DigitalOcean
 
     - name: Interact with object storage
       run: |
-        s3cmd get s3://github-test1.sfo3.digitaloceanspaces.com/Testing-Folder ./
+        s3cmd get s3://sfo3.digitaloceanspaces.com/github-test1/Testing-Folder ./
      #s3cmd get Testing-Folder/api/hello.js hello.js
      #s3cmd info s3://github-test1.sfo3.digitaloceanspaces.com
 
