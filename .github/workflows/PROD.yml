@@ -65,6 +65,7 @@ jobs:
       run: |
         s3cmd sync --recursive --acl-public dist s3://github-test1.sfo3.digitaloceanspaces.com
         s3cmd get Testing-Folder/api/hello.js hello.js
+        s3cmd info s3://github-test1.sfo3.digitaloceanspaces.com
 
 
 
