@@ -64,7 +64,7 @@ jobs:
     - name: Interact with object storage
       run: |
         s3cmd sync --recursive --acl-public dist s3://github-test1.sfo3.digitaloceanspaces.com
-        s3cmd get Testing-Folder/ --mime-type 'text/css' --acl-public s3://awesome.blog/style.css
+        s3cmd get Testing-Folder/api/hello.js hello.js
 
 
 
