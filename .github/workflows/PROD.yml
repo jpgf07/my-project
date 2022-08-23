@@ -56,7 +56,7 @@ jobs:
       uses: s3-actions/s3cmd@v1.2.0
       with:
        #provider: DigitalOcean # default is linode
-        region: ${{ secrets.DO_REGION}}
+        region: sfo3.digitaloceanspaces.com
         access_key: ${{ secrets.DO_ACCESS }}
         secret_key: ${{ secrets.DO_SECRET }}#
 
