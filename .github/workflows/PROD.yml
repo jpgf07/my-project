@@ -42,7 +42,7 @@ jobs:
       - name: Sync DigitalOcean Spac, purge changes from the CDN
         uses: laukstein/do-spaces@main
         env:
-        # DO_TOKEN: ${{ secrets.DO_TOKEN }}
+          DO_TOKEN: ${{ secrets.DO_TOKEN }}
           DO_ACCESS: ${{ secrets.DO_ACCESS }}
           DO_SECRET: ${{ secrets.DO_SECRET }}
           DO_NAME: ${{ secrets.DO_NAME }}
