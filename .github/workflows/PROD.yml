@@ -15,22 +15,24 @@ on:
 #  workflow_dispatch:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
-#jobs:
-#  
-#   build:
-#     runs-on: ubuntu-latest
-#     steps:
-#       - uses: actions/checkout@v3
-#         name: Use Node.js ${{ matrix.node-version }}
-#       - uses: actions/setup-node@v1
-#         with: 
-#          node-version: ${{ matrix.node-version }}
-#       - run: yarn install
-#       - run: yarn build
-#      name: DigitalOcean Spaces Action
-#on:
-#  push:
-#    paths: ./pages
+##jobs:
+##  
+##   build:
+##     runs-on: ubuntu-latest
+##     steps:
+##       - uses: actions/checkout@v3
+##         name: Use Node.js ${{ matrix.node-version }}
+##       - uses: actions/setup-node@v1
+##         with: 
+##          node-version: ${{ matrix.node-version }}
+##       - run: yarn install
+##       - run: yarn build
+##      name: DigitalOcean Spaces Action
+##on:
+##  push:
+##    paths: ./pages
+
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -40,47 +42,57 @@ jobs:
       with:
         args: --acl public-read
       env:
-        SOURCE_DIR: './pages'
+     #  SOURCE_DIR: './pages'
+        SOURCE_DIR: '/jpgf07/github01'
         DEST_DIR: 'Testing-Folder'
         SPACE_NAME: ${{ secrets.DO_NAME }}
         SPACE_REGION: ${{ secrets.DO_REGION}}
         SPACE_ACCESS_KEY_ID: ${{ secrets.DO_ACCESS }}
         SPACE_SECRET_ACCESS_KEY: ${{ secrets.DO_SECRET }}
         
+
+
+
+
+
+
+
+        
+        
           
           
           
-      # - name: Server sync 
-     #    uses: burnett01/rsync-deployments@4.0
-    #     with:
-   #       switches: -avzr --exclude=".git" --include="./node_nodules/" --include="./public/" --include="*.json"=""
-  #        path: /
- #         remote_path: /root/home/nextjs-jpsblog
- #         remote_host: ${{ secrets.PROD_HOST }}
- #         remote_port: ${{ secrets.PORT }}
- #         remote_user: ${{ secrets.USERNAME }}
- #         remote_key: ${{ secrets.PRIVATEKEY }}
+ #     # - name: Server sync 
+ #    #    uses: burnett01/rsync-deployments@4.0
+ #   #     with:
+ #  #       switches: -avzr --exclude=".git" --include="./node_nodules/" --include="./public/" --include="*.json"=""
+ # #        path: /
+ ##         remote_path: /root/home/nextjs-jpsblog
+ ##         remote_host: ${{ secrets.PROD_HOST }}
+ ##         remote_port: ${{ secrets.PORT }}
+ ##         remote_user: ${{ secrets.USERNAME }}
+ ##         remote_key: ${{ secrets.PRIVATEKEY }}
       
-    #   - name: Server application start
-    #     uses: appleboy/ssh-action@master
-    #     with:
-    #      host: ${{ secrets.PROD_HOST }}
-    #      username: ${{ secrets.USERNAME }}
-    #      key: ${{ secrets.PRIVATEKEY }}
-    #      port: ${{ secrets.PORT }}
-     #     script: |
-     #       cd /root/home/nextjs-jpsblog
-     #       pm2 start yarn --name "nextjs" --interpreter bash -- star
-     # 
-    #   - name: Send mail notification
-    #     uses: dawidd6/action-send-mail@v3
-    #     with:
-    #      server_address: ${{secrets.EMAIL_SMTP}}
-    #      server_port: ${{secrets.EMAIL_PORT}}
-    #      username: ${{secrets.MAIL_USERNAME}}
-    #      password: ${{secrets.MAIL_PASSWORD}}
-    #      subject: Maniak Devops Challenge job result (PROD)
-    #      to: angel@butchershop.co
-    #      from: JP Gomez 
-    #  
+ #   #   - name: Server application start
+ #   #     uses: appleboy/ssh-action@master
+ #   #     with:
+ #   #      host: ${{ secrets.PROD_HOST }}
+ #   #      username: ${{ secrets.USERNAME }}
+ #   #      key: ${{ secrets.PRIVATEKEY }}
+ #   #      port: ${{ secrets.PORT }}
+ #    #     script: |
+ #    #       cd /root/home/nextjs-jpsblog
+ #    #       pm2 start yarn --name "nextjs" --interpreter bash -- star
+ #    # 
+ #   #   - name: Send mail notification
+ #   #     uses: dawidd6/action-send-mail@v3
+ #   #     with:
+ #   #      server_address: ${{secrets.EMAIL_SMTP}}
+ #   #      server_port: ${{secrets.EMAIL_PORT}}
+ #   #      username: ${{secrets.MAIL_USERNAME}}
+ #   #      password: ${{secrets.MAIL_PASSWORD}}
+ #   #      subject: Maniak Devops Challenge job result (PROD)
+ #   #      to: angel@butchershop.co
+ #   #      from: JP Gomez 
+ #   #  
       
