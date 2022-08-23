@@ -4,30 +4,53 @@
 name: test-jp-app
 
 # Controls when the workflow will run
-on:
+#on:
   # Triggers the workflow on push or pull request events but only for the main branch
-  push:
-    branches: [ PROD ]
-  pull_request:
-    branches: [ PROD ]
+#  push:
+#    branches: [ PROD ]
+#  pull_request:
+#    branches: [ PROD ]
 
   # Allows you to run this workflow manually from the Actions tab
-  workflow_dispatch:
+#  workflow_dispatch:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
+#jobs:
+#  
+#   build:
+#     runs-on: ubuntu-latest
+#     steps:
+#       - uses: actions/checkout@v3
+#         name: Use Node.js ${{ matrix.node-version }}
+#       - uses: actions/setup-node@v1
+#         with: 
+#          node-version: ${{ matrix.node-version }}
+#       - run: yarn install
+#       - run: yarn build
+#      name: DigitalOcean Spaces Action
+on:
+  push:
+    paths: ./pages
 jobs:
-  
-   build:
-     runs-on: ubuntu-latest
-     steps:
-       - uses: actions/checkout@v3
-         name: Use Node.js ${{ matrix.node-version }}
-       - uses: actions/setup-node@v1
-         with: 
-          node-version: ${{ matrix.node-version }}
-       - run: yarn install
-       - run: yarn build
-      
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@main
+        with:
+          fetch-depth: 0
+      - name: Sync DigitalOcean Spac, purge changes from the CDN
+        uses: laukstein/do-spaces@main
+        env:
+        # DO_TOKEN: ${{ secrets.DO_TOKEN }}
+          DO_ACCESS: ${{ secrets.DO_ACCESS }}
+          DO_SECRET: ${{ secrets.DO_SECRET }}
+          DO_NAME: ${{ secrets.DO_NAME }}
+          DO_REGION: ams3
+          LOCAL_DIR: public
+          
+          
+          
       # - name: Server sync 
      #    uses: burnett01/rsync-deployments@4.0
     #     with:
